@@ -10,8 +10,7 @@
         :root {
             --light-blue: #58B4FF;
             --dark-blue: #004A84;
-            --white: #FFFFFF;
-            --black: #000000;
+            --white: rgba(255, 255, 255, 0.95); /* Semua teks putih solid */
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --transition: all 0.4s ease;
         }
@@ -80,10 +79,11 @@
             transform: translateY(-2px);
         }
 
-        /* Banner Styles */
+        /* Banner Styles (Auto-adjust height) */
         .channel-banner {
             width: 100%;
-            height: 250px;
+            height: auto;
+            max-height: 400px;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
@@ -101,15 +101,15 @@
 
         .channel-banner img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
         }
 
         /* Profile Section */
         .channel-info {
             display: flex;
             align-items: flex-start;
-            margin-top: -60px;
+            margin-top: -50px;
             padding: 0 20px;
             position: relative;
             z-index: 2;
@@ -149,7 +149,7 @@
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: var(--white);
         }
 
         .verified-badge {
@@ -161,6 +161,7 @@
         .channel-username {
             font-size: 16px;
             margin-bottom: 15px;
+            color: var(--white);
             opacity: 0.9;
         }
 
@@ -168,7 +169,8 @@
             font-size: 16px;
             line-height: 1.6;
             max-width: 600px;
-            opacity: 0.8;
+            color: var(--white);
+            opacity: 0.9;
         }
 
         .contact-info {
@@ -192,10 +194,6 @@
             opacity: 1;
         }
 
-        .contact-item i {
-            font-size: 14px;
-        }
-
         /* Options Grid */
         .options-container {
             margin-top: 60px;
@@ -213,6 +211,7 @@
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 30px;
+            color: var(--white);
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
@@ -239,30 +238,17 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
+        /* Custom Thumbnail */
         .option-thumbnail {
             height: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             position: relative;
             overflow: hidden;
         }
 
-        .option-thumbnail::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .option-thumbnail img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, 
-                        rgba(88, 180, 255, 0.3) 0%, 
-                        rgba(0, 74, 132, 0.5) 100%);
-        }
-
-        .option-icon {
-            font-size: 50px;
-            z-index: 1;
+            object-fit: cover;
         }
 
         .option-details {
@@ -274,10 +260,12 @@
             font-size: 18px;
             font-weight: 500;
             margin-bottom: 6px;
+            color: var(--white);
         }
 
         .option-desc {
             font-size: 14px;
+            color: var(--white);
             opacity: 0.8;
         }
 
@@ -328,7 +316,7 @@
 
         @media (min-width: 1024px) {
             .channel-banner {
-                height: 300px;
+                max-height: 500px;
             }
         }
     </style>
@@ -345,7 +333,7 @@
     <div class="ocean-wave"></div>
 
     <div class="container">
-        <!-- Banner Channel -->
+        <!-- Banner Channel (Auto-adjust height) -->
         <div class="channel-banner" id="channelBanner">
             <img src="banner.jpg" alt="Channel Banner">
         </div>
@@ -379,7 +367,7 @@
                 <!-- TikTok -->
                 <a href="https://www.tiktok.com/@novdev_official?_t=ZS-8yK6zIzcupu&_r=1" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fab fa-tiktok option-icon"></i>
+                        <img src="thumbnail1.jpg" alt="TikTok Thumbnail">
                     </div>
                     <div class="option-details">
                         <div class="option-title">TikTok</div>
@@ -390,7 +378,7 @@
                 <!-- YouTube -->
                 <a href="https://youtube.com/@novdev-0?si=MauC0cMEH5kDEMwh" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fab fa-youtube option-icon"></i>
+                        <img src="thumbnail2.jpg" alt="YouTube Thumbnail">
                     </div>
                     <div class="option-details">
                         <div class="option-title">YouTube</div>
@@ -401,7 +389,7 @@
                 <!-- Instagram -->
                 <a href="https://www.instagram.com/novdev_official?igsh=MzhoNGsyNm1uMWxh" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fab fa-instagram option-icon"></i>
+                        <img src="thumbnail3.jpg" alt="Instagram Thumbnail">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Instagram</div>
@@ -412,7 +400,7 @@
                 <!-- Lynk.id -->
                 <a href="https://lynk.id/novdev_lynk.sitestore" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fas fa-link option-icon"></i>
+                        <img src="thumbnail4.jpg" alt="Lynk.id Thumbnail">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Lynk.id</div>
@@ -420,10 +408,10 @@
                     </div>
                 </a>
                 
-                <!-- Default 1 (Usaha/Jasa) -->
+                <!-- Usaha 1 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fas fa-store option-icon"></i>
+                        <img src="thumbnail5.jpg" alt="Usaha 1 Thumbnail">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Usaha 1</div>
@@ -431,10 +419,10 @@
                     </div>
                 </a>
                 
-                <!-- Default 2 (Usaha/Jasa) -->
+                <!-- Usaha 2 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fas fa-tools option-icon"></i>
+                        <img src="thumbnail6.jpg" alt="Usaha 2 Thumbnail">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Usaha 2</div>
@@ -442,10 +430,10 @@
                     </div>
                 </a>
                 
-                <!-- Default 3 (Usaha/Jasa) -->
+                <!-- Usaha 3 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fas fa-briefcase option-icon"></i>
+                        <img src="thumbnail7.jpg" alt="Usaha 3 Thumbnail">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Usaha 3</div>
@@ -453,10 +441,10 @@
                     </div>
                 </a>
                 
-                <!-- Default 4 (Usaha/Jasa) -->
+                <!-- Usaha 4 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fas fa-cogs option-icon"></i>
+                        <img src="thumbnail8.jpg" alt="Usaha 4 Thumbnail">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Usaha 4</div>
