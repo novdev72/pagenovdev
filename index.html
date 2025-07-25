@@ -3,299 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ocean Dashboard</title>
+    <title>novdev Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* CSS will be placed here */
         :root {
             --light-blue: #58B4FF;
             --dark-blue: #004A84;
             --white: #FFFFFF;
-            --black: #000000;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --transition: all 0.4s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* [CSS sebelumnya tetap sama] */
+        /* Tambahkan ini di bagian paling bawah CSS: */
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--light-blue);
-            color: var(--white);
-            transition: background-color 0.8s ease;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, 
-                        rgba(88, 180, 255, 0.8) 0%, 
-                        rgba(0, 74, 132, 0.6) 100%);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        body.scrolled::before {
-            opacity: 1;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header Styles */
-        .header {
-            display: flex;
-            justify-content: flex-end;
-            padding: 20px;
-        }
-
-        .white-paper-btn {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: var(--white);
-            border: 1px solid var(--white);
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 500;
-            backdrop-filter: blur(5px);
-        }
-
-        .white-paper-btn:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Banner Styles */
-        .channel-banner {
-            width: 100%;
-            height: 250px;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .channel-banner.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .channel-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Profile Section */
-        .channel-info {
-            display: flex;
-            align-items: flex-start;
-            margin-top: -60px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
-        }
-
-        .channel-info.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .channel-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 4px solid var(--white);
-            background-color: #eee;
-            overflow: hidden;
-            flex-shrink: 0;
-            box-shadow: var(--shadow);
-        }
-
-        .channel-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .channel-details {
-            margin-left: 25px;
-            flex-grow: 1;
-        }
-
-        .channel-name {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .channel-username {
+        /* Verify Badge */
+        .verified-badge {
+            color: #1DA1F2;
+            margin-left: 5px;
             font-size: 16px;
-            margin-bottom: 15px;
-            opacity: 0.9;
         }
 
-        .channel-description {
-            font-size: 16px;
-            line-height: 1.6;
-            max-width: 600px;
-            opacity: 0.8;
+        /* Kontak Section */
+        .contact-info {
+            margin-top: 15px;
+            display: flex;
+            gap: 15px;
         }
-
-        /* Options Grid */
-        .options-container {
-            margin-top: 60px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s;
-        }
-
-        .options-container.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 30px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .option-card {
-            background-color: rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .option-card:hover {
-            transform: translateY(-8px);
-            background-color: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .option-thumbnail {
-            height: 140px;
+        .contact-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .option-thumbnail::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, 
-                        rgba(88, 180, 255, 0.3) 0%, 
-                        rgba(0, 74, 132, 0.5) 100%);
-        }
-
-        .option-icon {
-            font-size: 50px;
-            z-index: 1;
-        }
-
-        .option-details {
-            padding: 18px;
-            text-align: center;
-        }
-
-        .option-title {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 6px;
-        }
-
-        .option-desc {
+            gap: 5px;
             font-size: 14px;
+        }
+        .contact-item i {
             opacity: 0.8;
         }
 
-        /* Ocean Animation Elements */
-        .ocean-wave {
+        /* Gelembung Animasi */
+        @keyframes bubble-float {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
+        }
+        .bubble {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23004A84" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23004A84" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23004A84"/></svg>');
-            background-size: cover;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: bubble-float 8s linear infinite;
             z-index: -1;
-            opacity: 0;
-            transition: opacity 1s ease;
         }
 
-        body.scrolled .ocean-wave {
+        /* Tombol Scroll-to-Top */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 74, 132, 0.7);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            opacity: 0;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        .scroll-top-btn.visible {
             opacity: 1;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .channel-info {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                margin-top: 20px;
-            }
-            
-            .channel-avatar {
-                margin-top: -80px;
-                margin-bottom: 20px;
-            }
-            
-            .channel-details {
-                margin-left: 0;
-            }
-            
-            .options-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            }
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            opacity: 0.7;
+            transition: var(--transition);
         }
-
-        @media (min-width: 1024px) {
-            .channel-banner {
-                height: 300px;
-            }
+        .music-player:hover {
+            opacity: 1;
         }
     </style>
 </head>
@@ -322,172 +112,144 @@
                 <img src="profile.jpg" alt="Profile Picture">
             </div>
             <div class="channel-details">
-                <h1 class="channel-name">Ocean Explorer</h1>
-                <span class="channel-username">@deepsea_adventurer</span>
+                <h1 class="channel-name">novdev <i class="fas fa-check-circle verified-badge"></i></h1>
+                <span class="channel-username">@novian</span>
                 <p class="channel-description">
-                    Diving into the depths of creativity and technology. Explore my projects and connect with me through various platforms below.
+                    Selamat datang di novDev page.. ceri kebutuhan kamu di sini
                 </p>
+                <div class="contact-info">
+                    <a href="mailto:novdevmssg72@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://wa.me/+6285185917217" target="_blank" class="contact-item">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
         
         <!-- Options Grid -->
         <div class="options-container" id="optionsContainer">
-            <h2 class="section-title">Explore My Channels</h2>
+            <h2 class="section-title">My Links</h2>
             <div class="options-grid">
-                <!-- Option 1 - YouTube -->
-                <a href="https://youtube.com" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <i class="fab fa-youtube option-icon"></i>
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">YouTube</div>
-                        <div class="option-desc">Watch my video content</div>
-                    </div>
-                </a>
-                
-                <!-- Option 2 - TikTok -->
-                <a href="https://tiktok.com" class="option-card" target="_blank">
+                <!-- TikTok -->
+                <a href="https://www.tiktok.com/@novdev_official?_t=ZS-8yK6zIzcupu&_r=1" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <i class="fab fa-tiktok option-icon"></i>
                     </div>
                     <div class="option-details">
                         <div class="option-title">TikTok</div>
-                        <div class="option-desc">Short form videos</div>
+                        <div class="option-desc">@novdev_official</div>
                     </div>
                 </a>
                 
-                <!-- Option 3 - Instagram -->
-                <a href="https://instagram.com" class="option-card" target="_blank">
+                <!-- YouTube -->
+                <a href="https://youtube.com/@novdev-0?si=MauC0cMEH5kDEMwh" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
+                        <i class="fab fa-youtube option-icon"></i>
+                    </div>
+                    <div class="option-details">
+                        <div class="option-title">YouTube</div>
+                        <div class="option-desc">@novdev-0</div>
+                    </div>
+                </a>
+                
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/novdev_official?igsh=MzhoNGsyNm1uMWxh" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <i class="fab fa-instagram option-icon"></i>
                     </div>
                     <div class="option-details">
                         <div class="option-title">Instagram</div>
-                        <div class="option-desc">Photos and stories</div>
+                        <div class="option-desc">@novdev_official</div>
                     </div>
                 </a>
                 
-                <!-- Option 4 - Twitter -->
-                <a href="https://twitter.com" class="option-card" target="_blank">
+                <!-- Lynk.id -->
+                <a href="https://lynk.id/novdev_lynk.sitestore" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fab fa-twitter option-icon"></i>
+                        <i class="fas fa-link option-icon"></i>
                     </div>
                     <div class="option-details">
-                        <div class="option-title">Twitter</div>
-                        <div class="option-desc">Thoughts and updates</div>
+                        <div class="option-title">Lynk.id</div>
+                        <div class="option-desc">All-in-One Link</div>
                     </div>
                 </a>
                 
-                <!-- Option 5 - GitHub -->
-                <a href="https://github.com" class="option-card" target="_blank">
+                <!-- Default 1 (Jasa) -->
+                <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fab fa-github option-icon"></i>
+                        <i class="fas fa-store option-icon"></i>
                     </div>
                     <div class="option-details">
-                        <div class="option-title">GitHub</div>
-                        <div class="option-desc">Code repositories</div>
+                        <div class="option-title">Jasa 1</div>
+                        <div class="option-desc">Deskripsi singkat</div>
                     </div>
                 </a>
                 
-                <!-- Option 6 - LinkedIn -->
-                <a href="https://linkedin.com" class="option-card" target="_blank">
+                <!-- Default 2 (Jasa) -->
+                <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <i class="fab fa-linkedin option-icon"></i>
+                        <i class="fas fa-tools option-icon"></i>
                     </div>
                     <div class="option-details">
-                        <div class="option-title">LinkedIn</div>
-                        <div class="option-desc">Professional profile</div>
-                    </div>
-                </a>
-                
-                <!-- Option 7 - Discord -->
-                <a href="https://discord.com" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <i class="fab fa-discord option-icon"></i>
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Discord</div>
-                        <div class="option-desc">Community server</div>
-                    </div>
-                </a>
-                
-                <!-- Option 8 - Website -->
-                <a href="https://example.com" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <i class="fas fa-globe option-icon"></i>
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Website</div>
-                        <div class="option-desc">Official website</div>
+                        <div class="option-title">Jasa 2</div>
+                        <div class="option-desc">Deskripsi singkat</div>
                     </div>
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- Music Player -->
+    <div class="music-player">
+        <iframe 
+            width="300" 
+            height="80" 
+            src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope">
+        </iframe>
+    </div>
+
+    <!-- Tombol Scroll-to-Top -->
+    <button class="scroll-top-btn">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <script>
-        // Wait for DOM to load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initial animations
-            setTimeout(() => {
-                document.getElementById('channelBanner').classList.add('visible');
-                document.getElementById('channelInfo').classList.add('visible');
-                document.getElementById('optionsContainer').classList.add('visible');
-            }, 300);
+        // [Script sebelumnya tetap sama]
+        // Tambahkan ini di akhir script:
 
-            // Scroll effect - diving deeper into ocean
-            window.addEventListener('scroll', function() {
-                const scrollPosition = window.scrollY;
-                const maxScroll = 500;
-                const scrollRatio = Math.min(scrollPosition / maxScroll, 1);
-                
-                // Change background color based on scroll
-                const lightBlue = [88, 180, 255];
-                const darkBlue = [0, 74, 132];
-                
-                const currentColor = lightBlue.map((channel, index) => {
-                    return Math.round(channel + (darkBlue[index] - channel) * scrollRatio);
-                });
-                
-                document.body.style.backgroundColor = `rgb(${currentColor.join(',')})`;
-                
-                // Add scrolled class for wave effect
-                if (scrollPosition > 50) {
-                    document.body.classList.add('scrolled');
-                } else {
-                    document.body.classList.remove('scrolled');
-                }
-            });
+        // Generate gelembung
+        function createBubbles() {
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                bubble.style.left = `${Math.random() * 100}vw`;
+                bubble.style.width = `${Math.random() * 20 + 5}px`;
+                bubble.style.height = bubble.style.width;
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+                document.body.appendChild(bubble);
+            }
+        }
+        createBubbles();
 
-            // White paper button functionality
-            document.getElementById('whitePaperBtn').addEventListener('click', function() {
-                window.open('whitepaper.pdf', '_blank');
-            });
+        // Scroll-to-top button
+        window.addEventListener('scroll', () => {
+            const btn = document.querySelector('.scroll-top-btn');
+            btn.classList.toggle('visible', window.scrollY > 300);
+        });
+        document.querySelector('.scroll-top-btn').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
-            // Add ripple effect to option cards
-            const optionCards = document.querySelectorAll('.option-card');
-            optionCards.forEach(card => {
-                card.addEventListener('click', function(e) {
-                    // Ripple effect
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('ripple');
-                    
-                    const rect = card.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size/2;
-                    const y = e.clientY - rect.top - size/2;
-                    
-                    ripple.style.width = ripple.style.height = `${size}px`;
-                    ripple.style.left = `${x}px`;
-                    ripple.style.top = `${y}px`;
-                    ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-                    
-                    card.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
+        // Efek suara klik
+        const bubbleSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-bubble-pop-1384.mp3');
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('click', () => {
+                bubbleSound.currentTime = 0;
+                bubbleSound.play();
             });
         });
     </script>
