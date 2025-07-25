@@ -3,379 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Dashboard</title>
-    <style>
-        :root {
-            --primary-color: #FF0000;
-            --secondary-color: #282828;
-            --text-color: #333;
-            --light-gray: #f9f9f9;
-            --white: #ffffff;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', Arial, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light-gray);
-            color: var(--text-color);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Banner Styles */
-        .channel-banner {
-            width: 100%;
-            height: 200px;
-            background-color: #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .channel-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        /* Channel Info Styles */
-        .channel-info {
-            display: flex;
-            align-items: flex-start;
-            margin-top: -50px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .channel-avatar {
-            width: 100px;
-            height: 100px;
-            aspect-ratio: 1/1; /* Memastikan tetap persegi */
-            border-radius: 50%;
-            border: 4px solid var(--white);
-            background-color: #eee;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        
-        .channel-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .channel-details {
-            margin-left: 20px;
-            flex-grow: 1;
-        }
-        
-        .channel-name {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        
-        .channel-username {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 15px;
-            display: block;
-        }
-        
-        .channel-description {
-            color: #555;
-            line-height: 1.5;
-            max-width: 600px;
-        }
-        
-        /* Options Grid Styles */
-        .options-container {
-            margin-top: 40px;
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        
-        .option-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s ease forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .option-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-        
-        .option-thumbnail {
-            height: 120px;
-            background-color: #eee;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .option-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .option-icon {
-            font-size: 40px;
-            color: var(--white);
-        }
-        
-        .option-details {
-            padding: 15px;
-        }
-        
-        .option-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: var(--secondary-color);
-        }
-        
-        .option-desc {
-            font-size: 13px;
-            color: #666;
-        }
-        
-        /* Animasi Scroll */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .channel-info {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                margin-top: 20px;
-            }
-            
-            .channel-avatar {
-                margin-top: -80px;
-            }
-            
-            .channel-details {
-                margin-left: 0;
-                margin-top: 15px;
-            }
-            
-            .channel-description {
-                margin: 0 auto;
-            }
-            
-            .options-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .channel-banner {
-                height: 250px;
-            }
-            
-            .channel-avatar {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .options-grid {
-                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Ocean Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <!-- White Paper Button -->
+    <div class="header">
+        <button class="white-paper-btn" id="whitePaperBtn">
+            <i class="fas fa-file-alt"></i> White Paper
+        </button>
+    </div>
+
+    <!-- Ocean Wave Animation -->
+    <div class="ocean-wave"></div>
+
     <div class="container">
         <!-- Banner Channel -->
-        <div class="channel-banner animate-on-scroll">
-            <img src="https://via.placeholder.com/1200x200" alt="Channel Banner">
+        <div class="channel-banner" id="channelBanner">
+            <img src="assets/banner.jpg" alt="Channel Banner">
         </div>
         
-        <!-- Info Channel -->
-        <div class="channel-info animate-on-scroll">
+        <!-- Profile Section -->
+        <div class="channel-info" id="channelInfo">
             <div class="channel-avatar">
-                <img src="https://via.placeholder.com/100" alt="Profile Picture">
+                <img src="assets/profile.jpg" alt="Profile Picture">
             </div>
             <div class="channel-details">
-                <h1 class="channel-name">Nama Channel Anda</h1>
-                <span class="channel-username">@username</span>
+                <h1 class="channel-name">Ocean Explorer</h1>
+                <span class="channel-username">@deepsea_adventurer</span>
                 <p class="channel-description">
-                    Deskripsi channel Anda bisa ditulis di sini. Anda bisa menulis tentang berbagai opsi yang tersedia, tujuan channel, atau informasi lainnya yang relevan.
+                    Diving into the depths of creativity and technology. Explore my projects and connect with me through various platforms below.
                 </p>
             </div>
         </div>
         
-        <!-- Daftar Opsi -->
-        <div class="options-container">
-            <h2 class="section-title animate-on-scroll">Pilihan Tersedia</h2>
+        <!-- Options Grid -->
+        <div class="options-container" id="optionsContainer">
+            <h2 class="section-title">Explore My Channels</h2>
             <div class="options-grid">
-                <!-- Opsi 1 - Toko -->
-                <div class="option-card animate-on-scroll" style="animation-delay: 0.1s;">
-                    <div class="option-thumbnail" style="background-color: #FFD700;">
-                        <i class="fas fa-store option-icon"></i>
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Toko Online</div>
-                        <div class="option-desc">Kunjungi toko kami untuk produk eksklusif</div>
-                    </div>
-                </div>
-                
-                <!-- Opsi 2 - TikTok -->
-                <div class="option-card animate-on-scroll" style="animation-delay: 0.2s;">
-                    <div class="option-thumbnail" style="background-color: #000;">
-                        <i class="fab fa-tiktok option-icon"></i>
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">TikTok</div>
-                        <div class="option-desc">Video pendek dan konten seru di TikTok</div>
-                    </div>
-                </div>
-                
-                <!-- Opsi 3 - YouTube -->
-                <div class="option-card animate-on-scroll" style="animation-delay: 0.3s;">
-                    <div class="option-thumbnail" style="background-color: #FF0000;">
+                <!-- YouTube -->
+                <a href="https://youtube.com" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
                         <i class="fab fa-youtube option-icon"></i>
                     </div>
                     <div class="option-details">
                         <div class="option-title">YouTube</div>
-                        <div class="option-desc">Konten video lengkap di channel YouTube</div>
+                        <div class="option-desc">Watch my videos</div>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Opsi 4 - Instagram -->
-                <div class="option-card animate-on-scroll" style="animation-delay: 0.4s;">
-                    <div class="option-thumbnail" style="background-color: #E1306C;">
-                        <i class="fab fa-instagram option-icon"></i>
+                <!-- TikTok -->
+                <a href="https://tiktok.com" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
+                        <i class="fab fa-tiktok option-icon"></i>
                     </div>
                     <div class="option-details">
-                        <div class="option-title">Instagram</div>
-                        <div class="option-desc">Foto dan story harian di Instagram</div>
+                        <div class="option-title">TikTok</div>
+                        <div class="option-desc">Short clips</div>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Opsi 5 - Discord -->
-                <div class="option-card animate-on-scroll" style="animation-delay: 0.5s;">
-                    <div class="option-thumbnail" style="background-color: #5865F2;">
-                        <i class="fab fa-discord option-icon"></i>
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Discord</div>
-                        <div class="option-desc">Komunitas dan diskusi di server Discord</div>
-                    </div>
-                </div>
-                
-                <!-- Opsi 6 - Podcast -->
-                <div class="option-card animate-on-scroll" style="animation-delay: 0.6s;">
-                    <div class="option-thumbnail" style="background-color: #9933CC;">
-                        <i class="fas fa-podcast option-icon"></i>
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Podcast</div>
-                        <div class="option-desc">Dengarkan podcast kami di platform favorit</div>
-                    </div>
-                </div>
-                
-                <!-- Opsi 7 - Blog -->
-                <div class="option-card animate-on-scroll" style="animation-delay: 0.7s;">
-                    <div class="option-thumbnail" style="background-color: #4285F4;">
-                        <i class="fas fa-blog option-icon"></i>
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Blog</div>
-                        <div class="option-desc">Artikel dan tulisan lengkap di blog kami</div>
-                    </div>
-                </div>
-                
-                <!-- Opsi 8 - Donasi -->
-                <div class="option-card animate-on-scroll" style="animation-delay: 0.8s;">
-                    <div class="option-thumbnail" style="background-color: #34A853;">
-                        <i class="fas fa-hand-holding-heart option-icon"></i>
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Donasi</div>
-                        <div class="option-desc">Dukung kami melalui donasi</div>
-                    </div>
-                </div>
+                <!-- Add other options here -->
             </div>
         </div>
     </div>
 
-    <script>
-        // Animasi Scroll
-        document.addEventListener('DOMContentLoaded', function() {
-            const animateElements = document.querySelectorAll('.animate-on-scroll');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            
-            animateElements.forEach(element => {
-                observer.observe(element);
-            });
-            
-            // Animasi untuk option cards dengan delay berbeda
-            const optionCards = document.querySelectorAll('.option-card');
-            optionCards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.1}s`;
-            });
-        });
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
