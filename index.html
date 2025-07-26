@@ -115,7 +115,6 @@
             100% { left: -80px; top: 40%; }
         }
 
-        /* Container Styles */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -124,7 +123,6 @@
             z-index: 2;
         }
 
-        /* Header Styles */
         .header {
             display: flex;
             justify-content: flex-end;
@@ -150,7 +148,6 @@
             transform: translateY(-2px);
         }
 
-        /* Banner Styles */
         .channel-banner {
             width: 100%;
             height: auto;
@@ -176,7 +173,6 @@
             display: block;
         }
 
-        /* Profile Section */
         .channel-info {
             display: flex;
             align-items: flex-start;
@@ -259,7 +255,6 @@
             opacity: 1;
         }
 
-        /* Options Grid */
         .options-container {
             margin-top: 60px;
             opacity: 0;
@@ -307,14 +302,16 @@
 
         .option-thumbnail {
             width: 100%;
-            height: auto;
+            height: 140px;
             position: relative;
             overflow: hidden;
+            background-color: rgba(255,255,255,0.1); /* Fallback jika gambar tidak ada */
         }
 
         .option-thumbnail img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
 
@@ -336,7 +333,6 @@
             opacity: 0.8;
         }
 
-        /* Responsive Styles */
         @media (max-width: 768px) {
             .channel-info {
                 flex-direction: column;
@@ -423,7 +419,7 @@
         <div class="options-container" id="optionsContainer">
             <h2 class="section-title">My Links</h2>
             <div class="options-grid">
-                <!-- Your option cards here -->
+                <!-- TikTok -->
                 <a href="https://www.tiktok.com/@novdev_official?_t=ZS-8yK6zIzcupu&_r=1" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail1.jpg" alt="TikTok Thumbnail">
@@ -434,7 +430,82 @@
                     </div>
                 </a>
                 
-                <!-- Other cards... -->
+                <!-- YouTube -->
+                <a href="https://youtube.com/@novdev-0?si=MauC0cMEH5kDEMwh" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
+                        <img src="thumbnail2.jpg" alt="YouTube Thumbnail">
+                    </div>
+                    <div class="option-details">
+                        <div class="option-title">YouTube</div>
+                        <div class="option-desc">@novdev-0</div>
+                    </div>
+                </a>
+                
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/novdev_official?igsh=MzhoNGsyNm1uMWxh" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
+                        <img src="thumbnail3.jpg" alt="Instagram Thumbnail">
+                    </div>
+                    <div class="option-details">
+                        <div class="option-title">Instagram</div>
+                        <div class="option-desc">@novdev_official</div>
+                    </div>
+                </a>
+                
+                <!-- Lynk.id -->
+                <a href="https://lynk.id/novdev_lynk.sitestore" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
+                        <img src="thumbnail4.jpg" alt="Lynk.id Thumbnail">
+                    </div>
+                    <div class="option-details">
+                        <div class="option-title">Lynk.id</div>
+                        <div class="option-desc">All-in-One Link</div>
+                    </div>
+                </a>
+                
+                <!-- Usaha 1 -->
+                <a href="#" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
+                        <img src="thumbnail5.jpg" alt="Usaha 1 Thumbnail">
+                    </div>
+                    <div class="option-details">
+                        <div class="option-title">Usaha 1</div>
+                        <div class="option-desc">Deskripsi singkat</div>
+                    </div>
+                </a>
+                
+                <!-- Usaha 2 -->
+                <a href="#" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
+                        <img src="thumbnail6.jpg" alt="Usaha 2 Thumbnail">
+                    </div>
+                    <div class="option-details">
+                        <div class="option-title">Usaha 2</div>
+                        <div class="option-desc">Deskripsi singkat</div>
+                    </div>
+                </a>
+                
+                <!-- Usaha 3 -->
+                <a href="#" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
+                        <img src="thumbnail7.jpg" alt="Usaha 3 Thumbnail">
+                    </div>
+                    <div class="option-details">
+                        <div class="option-title">Usaha 3</div>
+                        <div class="option-desc">Deskripsi singkat</div>
+                    </div>
+                </a>
+                
+                <!-- Usaha 4 -->
+                <a href="#" class="option-card" target="_blank">
+                    <div class="option-thumbnail">
+                        <img src="thumbnail8.jpg" alt="Usaha 4 Thumbnail">
+                    </div>
+                    <div class="option-details">
+                        <div class="option-title">Usaha 4</div>
+                        <div class="option-desc">Deskripsi singkat</div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
