@@ -309,8 +309,41 @@
                 justify-content: center;
             }
             
+            /* MODIFIED FOR VERTICAL LINKS ON MOBILE */
             .options-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .option-card {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: auto;
+                padding: 0;
+            }
+            
+            .option-thumbnail {
+                width: 80px;
+                height: 80px;
+                border-radius: 8px;
+                margin: 10px;
+                flex-shrink: 0;
+            }
+            
+            .option-details {
+                text-align: left;
+                padding: 10px;
+                flex-grow: 1;
+            }
+            
+            .option-title {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+            
+            .option-desc {
+                font-size: 13px;
             }
         }
 
@@ -323,14 +356,14 @@
 </head>
 <body>
     <!-- White Paper Button -->
-<div class="header">
-    <button 
-        class="white-paper-btn" 
-        onclick="window.open('https://novdev72.github.io/WhitePaper/', '_blank')"
-    >
-        <i class="fas fa-file-alt"></i> White Paper
-    </button>
-</div>
+    <div class="header">
+        <button 
+            class="white-paper-btn" 
+            onclick="window.open('https://novdev72.github.io/WhitePaper/', '_blank')"
+        >
+            <i class="fas fa-file-alt"></i> White Paper
+        </button>
+    </div>
 
     <!-- Ocean Wave Animation -->
     <div class="ocean-wave"></div>
@@ -490,11 +523,6 @@
                 } else {
                     document.body.classList.remove('scrolled');
                 }
-            });
-
-            // White paper button functionality
-            document.getElementById('whitePaperBtn').addEventListener('click', function() {
-                window.open('whitepaper.pdf', '_blank');
             });
 
             // Add ripple effect to option cards
