@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --light-blue: #58B4FF;
-            --dark-blue: #004A84;
+            --surface-blue: #58B4FF;
+            --mid-blue: #1E88D1;
+            --deep-blue: #004A84;
+            --abyss-blue: #002142;
             --white: rgba(255, 255, 255, 0.95);
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --transition: all 0.4s ease;
+            --wave-height: 150px;
         }
 
         * {
@@ -23,36 +26,102 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: var(--light-blue);
+            background: var(--surface-blue);
             color: var(--white);
-            transition: background-color 0.8s ease;
+            transition: background 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-x: hidden;
             position: relative;
         }
 
-        body::before {
-            content: '';
+        /* Ocean Wave */
+        .ocean-wave {
             position: fixed;
-            top: 0;
+            bottom: 0;
             left: 0;
+            width: 200%;
+            height: var(--wave-height);
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23004A84" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23004A84" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23004A84"/></svg>');
+            background-size: 50% var(--wave-height);
+            opacity: 0;
+            transform-origin: bottom;
+            transform-style: preserve-3d;
+            transition: 
+                transform 1.2s cubic-bezier(0.2, 0.9, 0.1, 1),
+                opacity 0.8s ease;
+            z-index: -1;
+            animation: waveFlow 15s linear infinite;
+        }
+
+        @keyframes waveFlow {
+            0% { background-position-x: 0; }
+            100% { background-position-x: -100%; }
+        }
+
+        /* Flying Birds */
+        .birds {
+            position: fixed;
+            top: 15%;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, 
-                        rgba(88, 180, 255, 0.8) 0%, 
-                        rgba(0, 74, 132, 0.6) 100%);
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M10,5 L15,10 L5,10 Z" fill="white" opacity="0.8"/></svg>');
+            background-repeat: repeat-x;
+            background-size: 50px 20px;
+            animation: flyBirds 20s linear infinite;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 1.5s ease-out;
+        }
+
+        @keyframes flyBirds {
+            0% { background-position-x: -100px; }
+            100% { background-position-x: 100vw; }
+        }
+
+        /* Underwater Bubbles */
+        .bubbles {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 80%, 
+                    rgba(255,255,255,0.1) 2%, 
+                    transparent 5%) 0 0 / 50px 50px;
+            animation: bubbles 15s linear infinite;
             z-index: -1;
             opacity: 0;
             transition: opacity 1s ease;
         }
 
-        body.scrolled::before {
-            opacity: 1;
+        @keyframes bubbles {
+            to { background-position: 0 -1000px; }
         }
 
+        /* Fish Animation */
+        .fish {
+            position: fixed;
+            width: 80px;
+            height: 40px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 40"><path d="M10,20 Q30,5 50,20 Q70,35 75,20 L60,20 Q50,25 40,20 Z" fill="rgba(255,255,255,0.4)"/></svg>');
+            animation: swimFish 30s linear infinite;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        @keyframes swimFish {
+            0% { left: -80px; top: 40%; }
+            50% { left: 100vw; top: 60%; }
+            100% { left: -80px; top: 40%; }
+        }
+
+        /* Container Styles */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 2;
         }
 
         /* Header Styles */
@@ -60,6 +129,8 @@
             display: flex;
             justify-content: flex-end;
             padding: 20px;
+            position: relative;
+            z-index: 10;
         }
 
         .white-paper-btn {
@@ -152,12 +223,6 @@
             color: var(--white);
         }
 
-        .verified-badge {
-            color: #1DA1F2;
-            margin-left: 5px;
-            font-size: 16px;
-        }
-
         .channel-username {
             font-size: 16px;
             margin-bottom: 15px;
@@ -240,7 +305,6 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        /* Thumbnail Styles */
         .option-thumbnail {
             width: 100%;
             height: auto;
@@ -272,24 +336,6 @@
             opacity: 0.8;
         }
 
-        /* Ocean Animation */
-        .ocean-wave {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23004A84" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23004A84" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23004A84"/></svg>');
-            background-size: cover;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        body.scrolled .ocean-wave {
-            opacity: 1;
-        }
-
         /* Responsive Styles */
         @media (max-width: 768px) {
             .channel-info {
@@ -317,12 +363,8 @@
                 gap: 15px;
             }
             
-            .option-thumbnail {
-                height: auto;
-            }
-            
-            .option-details {
-                padding: 15px;
+            .ocean-wave {
+                height: 100px;
             }
         }
 
@@ -334,13 +376,23 @@
     </style>
 </head>
 <body>
+    <!-- Flying Birds -->
+    <div class="birds"></div>
+
+    <!-- Ocean Wave -->
+    <div class="ocean-wave"></div>
+
+    <!-- Underwater Effects -->
+    <div class="bubbles"></div>
+    <div class="fish" style="top:30%; animation-delay:2s;"></div>
+    <div class="fish" style="top:60%; animation-delay:5s; width:120px;"></div>
+
+    <!-- Your Content -->
     <div class="header">
         <button class="white-paper-btn" onclick="window.open('https://novdev72.github.io/WhitePaper/', '_blank')">
             <i class="fas fa-file-alt"></i> White Paper
         </button>
     </div>
-
-    <div class="ocean-wave"></div>
 
     <div class="container">
         <div class="channel-banner" id="channelBanner">
@@ -371,6 +423,7 @@
         <div class="options-container" id="optionsContainer">
             <h2 class="section-title">My Links</h2>
             <div class="options-grid">
+                <!-- Your option cards here -->
                 <a href="https://www.tiktok.com/@novdev_official?_t=ZS-8yK6zIzcupu&_r=1" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail1.jpg" alt="TikTok Thumbnail">
@@ -381,108 +434,91 @@
                     </div>
                 </a>
                 
-                <a href="https://youtube.com/@novdev-0?si=MauC0cMEH5kDEMwh" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <img src="thumbnail2.jpg" alt="YouTube Thumbnail">
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">YouTube</div>
-                        <div class="option-desc">@novdev-0</div>
-                    </div>
-                </a>
-                
-                <a href="https://www.instagram.com/novdev_official?igsh=MzhoNGsyNm1uMWxh" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <img src="thumbnail3.jpg" alt="Instagram Thumbnail">
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Instagram</div>
-                        <div class="option-desc">@novdev_official</div>
-                    </div>
-                </a>
-                
-                <a href="https://lynk.id/novdev_lynk.sitestore" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <img src="thumbnail4.jpg" alt="Lynk.id Thumbnail">
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Lynk.id</div>
-                        <div class="option-desc">All-in-One Link</div>
-                    </div>
-                </a>
-                
-                <a href="#" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <img src="thumbnail5.jpg" alt="Usaha 1 Thumbnail">
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Usaha 1</div>
-                        <div class="option-desc">Deskripsi singkat</div>
-                    </div>
-                </a>
-                
-                <a href="#" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <img src="thumbnail6.jpg" alt="Usaha 2 Thumbnail">
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Usaha 2</div>
-                        <div class="option-desc">Deskripsi singkat</div>
-                    </div>
-                </a>
-                
-                <a href="#" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <img src="thumbnail7.jpg" alt="Usaha 3 Thumbnail">
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Usaha 3</div>
-                        <div class="option-desc">Deskripsi singkat</div>
-                    </div>
-                </a>
-                
-                <a href="#" class="option-card" target="_blank">
-                    <div class="option-thumbnail">
-                        <img src="thumbnail8.jpg" alt="Usaha 4 Thumbnail">
-                    </div>
-                    <div class="option-details">
-                        <div class="option-title">Usaha 4</div>
-                        <div class="option-desc">Deskripsi singkat</div>
-                    </div>
-                </a>
+                <!-- Other cards... -->
             </div>
         </div>
     </div>
 
     <script>
+        // Depth Zones Configuration
+        const depthZones = [
+            { 
+                name: "Surface", 
+                color: "var(--surface-blue)",
+                birds: 0.8,
+                waves: 0.8,
+                bubbles: 0,
+                fish: 0,
+                waveHeight: 150
+            },
+            {
+                name: "Sunlight Zone", 
+                color: "var(--mid-blue)",
+                birds: 0.3,
+                waves: 0.4,
+                bubbles: 0.4,
+                fish: 0.5,
+                waveHeight: 120
+            },
+            {
+                name: "Twilight Zone", 
+                color: "var(--deep-blue)",
+                birds: 0,
+                waves: 0,
+                bubbles: 0.7,
+                fish: 0.8,
+                waveHeight: 90
+            },
+            {
+                name: "Midnight Zone", 
+                color: "var(--abyss-blue)",
+                birds: 0,
+                waves: 0,
+                bubbles: 0.9,
+                fish: 1,
+                waveHeight: 60
+            }
+        ];
+
+        // Scroll Control
+        window.addEventListener('scroll', function() {
+            const scrollPercent = Math.min(window.scrollY / (document.body.scrollHeight - window.innerHeight), 0.99);
+            const zoneIndex = Math.min(Math.floor(scrollPercent * depthZones.length), depthZones.length - 1);
+            const zone = depthZones[zoneIndex];
+            const zoneProgress = (scrollPercent * depthZones.length) % 1;
+            
+            // Apply zone styles
+            document.body.style.background = zone.color;
+            document.querySelector('.birds').style.opacity = zone.birds;
+            document.querySelector('.ocean-wave').style.opacity = zone.waves;
+            document.querySelector('.bubbles').style.opacity = zone.bubbles;
+            document.querySelectorAll('.fish').forEach(fish => {
+                fish.style.opacity = zone.fish;
+            });
+            
+            // Dynamic wave height
+            const nextZone = depthZones[Math.min(zoneIndex + 1, depthZones.length - 1)];
+            const waveHeight = zone.waveHeight + (nextZone.waveHeight - zone.waveHeight) * zoneProgress;
+            document.documentElement.style.setProperty('--wave-height', `${waveHeight}px`);
+            
+            // 3D wave effect
+            const wave = document.querySelector('.ocean-wave');
+            const rotateX = 5 + zoneProgress * 15;
+            wave.style.transform = `perspective(500px) rotateX(${rotateX}deg)`;
+        });
+
+        // Initial Animations
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 document.getElementById('channelBanner').classList.add('visible');
                 document.getElementById('channelInfo').classList.add('visible');
                 document.getElementById('optionsContainer').classList.add('visible');
+                
+                // Start birds animation
+                document.querySelector('.birds').style.opacity = 0.8;
             }, 300);
 
-            window.addEventListener('scroll', function() {
-                const scrollPosition = window.scrollY;
-                const maxScroll = 500;
-                const scrollRatio = Math.min(scrollPosition / maxScroll, 1);
-                
-                const lightBlue = [88, 180, 255];
-                const darkBlue = [0, 74, 132];
-                
-                const currentColor = lightBlue.map((channel, index) => {
-                    return Math.round(channel + (darkBlue[index] - channel) * scrollRatio);
-                });
-                
-                document.body.style.backgroundColor = `rgb(${currentColor.join(',')})`;
-                
-                if (scrollPosition > 50) {
-                    document.body.classList.add('scrolled');
-                } else {
-                    document.body.classList.remove('scrolled');
-                }
-            });
-
+            // Ripple effect for cards
             const optionCards = document.querySelectorAll('.option-card');
             optionCards.forEach(card => {
                 card.addEventListener('click', function(e) {
