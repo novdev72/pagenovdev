@@ -10,7 +10,7 @@
         :root {
             --light-blue: #58B4FF;
             --dark-blue: #004A84;
-            --white: rgba(255, 255, 255, 0.95); /* Semua teks putih solid */
+            --white: rgba(255, 255, 255, 0.95);
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --transition: all 0.4s ease;
         }
@@ -79,7 +79,7 @@
             transform: translateY(-2px);
         }
 
-        /* Banner Styles (Auto-adjust height) */
+        /* Banner Styles */
         .channel-banner {
             width: 100%;
             height: auto;
@@ -230,6 +230,8 @@
             cursor: pointer;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
         }
 
         .option-card:hover {
@@ -238,17 +240,18 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        /* Custom Thumbnail */
+        /* Thumbnail Styles */
         .option-thumbnail {
-            height: 140px;
+            width: 100%;
+            height: auto;
             position: relative;
             overflow: hidden;
         }
 
         .option-thumbnail img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
         }
 
         .option-details {
@@ -269,7 +272,7 @@
             opacity: 0.8;
         }
 
-        /* Ocean Animation Elements */
+        /* Ocean Animation */
         .ocean-wave {
             position: fixed;
             bottom: 0;
@@ -309,41 +312,17 @@
                 justify-content: center;
             }
             
-            /* MODIFIED FOR VERTICAL LINKS ON MOBILE */
             .options-grid {
                 grid-template-columns: 1fr;
                 gap: 15px;
             }
             
-            .option-card {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                height: auto;
-                padding: 0;
-            }
-            
             .option-thumbnail {
-                width: 80px;
-                height: 80px;
-                border-radius: 8px;
-                margin: 10px;
-                flex-shrink: 0;
+                height: auto;
             }
             
             .option-details {
-                text-align: left;
-                padding: 10px;
-                flex-grow: 1;
-            }
-            
-            .option-title {
-                font-size: 16px;
-                margin-bottom: 4px;
-            }
-            
-            .option-desc {
-                font-size: 13px;
+                padding: 15px;
             }
         }
 
@@ -355,32 +334,25 @@
     </style>
 </head>
 <body>
-    <!-- White Paper Button -->
     <div class="header">
-        <button 
-            class="white-paper-btn" 
-            onclick="window.open('https://novdev72.github.io/WhitePaper/', '_blank')"
-        >
+        <button class="white-paper-btn" onclick="window.open('https://novdev72.github.io/WhitePaper/', '_blank')">
             <i class="fas fa-file-alt"></i> White Paper
         </button>
     </div>
 
-    <!-- Ocean Wave Animation -->
     <div class="ocean-wave"></div>
 
     <div class="container">
-        <!-- Banner Channel (Auto-adjust height) -->
         <div class="channel-banner" id="channelBanner">
             <img src="banner.jpg" alt="Channel Banner">
         </div>
         
-        <!-- Profile Section -->
         <div class="channel-info" id="channelInfo">
             <div class="channel-avatar">
                 <img src="profil.png" alt="Profile Picture">
             </div>
             <div class="channel-details">
-                <h1 class="channel-name">novian </h1>
+                <h1 class="channel-name">novian</h1>
                 <span class="channel-username">@novdev_official <i class="fas fa-check-circle" style="color: #FFFFFF;"></i></span>
                 <p class="channel-description">
                     Selamat datang di novDev page.. cari kebutuhan kamu mulai dari wawasan, rekomendasi, produk, dan lainnya
@@ -396,11 +368,9 @@
             </div>
         </div>
         
-        <!-- Options Grid -->
         <div class="options-container" id="optionsContainer">
             <h2 class="section-title">My Links</h2>
             <div class="options-grid">
-                <!-- TikTok -->
                 <a href="https://www.tiktok.com/@novdev_official?_t=ZS-8yK6zIzcupu&_r=1" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail1.jpg" alt="TikTok Thumbnail">
@@ -411,7 +381,6 @@
                     </div>
                 </a>
                 
-                <!-- YouTube -->
                 <a href="https://youtube.com/@novdev-0?si=MauC0cMEH5kDEMwh" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail2.jpg" alt="YouTube Thumbnail">
@@ -422,7 +391,6 @@
                     </div>
                 </a>
                 
-                <!-- Instagram -->
                 <a href="https://www.instagram.com/novdev_official?igsh=MzhoNGsyNm1uMWxh" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail3.jpg" alt="Instagram Thumbnail">
@@ -433,7 +401,6 @@
                     </div>
                 </a>
                 
-                <!-- Lynk.id -->
                 <a href="https://lynk.id/novdev_lynk.sitestore" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail4.jpg" alt="Lynk.id Thumbnail">
@@ -444,7 +411,6 @@
                     </div>
                 </a>
                 
-                <!-- Usaha 1 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail5.jpg" alt="Usaha 1 Thumbnail">
@@ -455,7 +421,6 @@
                     </div>
                 </a>
                 
-                <!-- Usaha 2 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail6.jpg" alt="Usaha 2 Thumbnail">
@@ -466,7 +431,6 @@
                     </div>
                 </a>
                 
-                <!-- Usaha 3 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail7.jpg" alt="Usaha 3 Thumbnail">
@@ -477,7 +441,6 @@
                     </div>
                 </a>
                 
-                <!-- Usaha 4 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
                         <img src="thumbnail8.jpg" alt="Usaha 4 Thumbnail">
@@ -492,22 +455,18 @@
     </div>
 
     <script>
-        // Wait for DOM to load
         document.addEventListener('DOMContentLoaded', function() {
-            // Initial animations
             setTimeout(() => {
                 document.getElementById('channelBanner').classList.add('visible');
                 document.getElementById('channelInfo').classList.add('visible');
                 document.getElementById('optionsContainer').classList.add('visible');
             }, 300);
 
-            // Scroll effect - diving deeper into ocean
             window.addEventListener('scroll', function() {
                 const scrollPosition = window.scrollY;
                 const maxScroll = 500;
                 const scrollRatio = Math.min(scrollPosition / maxScroll, 1);
                 
-                // Change background color based on scroll
                 const lightBlue = [88, 180, 255];
                 const darkBlue = [0, 74, 132];
                 
@@ -517,7 +476,6 @@
                 
                 document.body.style.backgroundColor = `rgb(${currentColor.join(',')})`;
                 
-                // Add scrolled class for wave effect
                 if (scrollPosition > 50) {
                     document.body.classList.add('scrolled');
                 } else {
@@ -525,11 +483,9 @@
                 }
             });
 
-            // Add ripple effect to option cards
             const optionCards = document.querySelectorAll('.option-card');
             optionCards.forEach(card => {
                 card.addEventListener('click', function(e) {
-                    // Ripple effect
                     const ripple = document.createElement('span');
                     ripple.classList.add('ripple');
                     
