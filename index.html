@@ -300,24 +300,30 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
+        /* FIXED THUMBNAIL STYLES */
         .option-thumbnail {
             width: 100%;
-            height: 140px;
+            height: 180px; /* Fixed height */
             position: relative;
             overflow: hidden;
-            background-color: rgba(255,255,255,0.1); /* Fallback jika gambar tidak ada */
+            background-color: rgba(255,255,255,0.1); /* Fallback color */
         }
 
         .option-thumbnail img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain; /* Changed from 'cover' to 'contain' */
+            background-color: rgba(0,0,0,0.1); /* Visible if image has transparency */
             display: block;
         }
 
         .option-details {
             padding: 18px;
             text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .option-title {
@@ -359,8 +365,8 @@
                 gap: 15px;
             }
             
-            .ocean-wave {
-                height: 100px;
+            .option-thumbnail {
+                height: 150px; /* Slightly smaller on mobile */
             }
         }
 
@@ -422,7 +428,7 @@
                 <!-- TikTok -->
                 <a href="https://www.tiktok.com/@novdev_official?_t=ZS-8yK6zIzcupu&_r=1" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <img src="thumbnail1.jpg" alt="TikTok Thumbnail">
+                        <img src="thumbnail1.jpg" alt="TikTok Thumbnail" onerror="this.src='https://via.placeholder.com/300x180?text=TikTok'">
                     </div>
                     <div class="option-details">
                         <div class="option-title">TikTok</div>
@@ -433,7 +439,7 @@
                 <!-- YouTube -->
                 <a href="https://youtube.com/@novdev-0?si=MauC0cMEH5kDEMwh" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <img src="thumbnail2.jpg" alt="YouTube Thumbnail">
+                        <img src="thumbnail2.jpg" alt="YouTube Thumbnail" onerror="this.src='https://via.placeholder.com/300x180?text=YouTube'">
                     </div>
                     <div class="option-details">
                         <div class="option-title">YouTube</div>
@@ -444,7 +450,7 @@
                 <!-- Instagram -->
                 <a href="https://www.instagram.com/novdev_official?igsh=MzhoNGsyNm1uMWxh" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <img src="thumbnail3.jpg" alt="Instagram Thumbnail">
+                        <img src="thumbnail3.jpg" alt="Instagram Thumbnail" onerror="this.src='https://via.placeholder.com/300x180?text=Instagram'">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Instagram</div>
@@ -455,7 +461,7 @@
                 <!-- Lynk.id -->
                 <a href="https://lynk.id/novdev_lynk.sitestore" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <img src="thumbnail4.jpg" alt="Lynk.id Thumbnail">
+                        <img src="thumbnail4.jpg" alt="Lynk.id Thumbnail" onerror="this.src='https://via.placeholder.com/300x180?text=Lynk.id'">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Lynk.id</div>
@@ -466,7 +472,7 @@
                 <!-- Usaha 1 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <img src="thumbnail5.jpg" alt="Usaha 1 Thumbnail">
+                        <img src="thumbnail5.jpg" alt="Usaha 1 Thumbnail" onerror="this.src='https://via.placeholder.com/300x180?text=Usaha+1'">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Usaha 1</div>
@@ -477,7 +483,7 @@
                 <!-- Usaha 2 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <img src="thumbnail6.jpg" alt="Usaha 2 Thumbnail">
+                        <img src="thumbnail6.jpg" alt="Usaha 2 Thumbnail" onerror="this.src='https://via.placeholder.com/300x180?text=Usaha+2'">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Usaha 2</div>
@@ -488,7 +494,7 @@
                 <!-- Usaha 3 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <img src="thumbnail7.jpg" alt="Usaha 3 Thumbnail">
+                        <img src="thumbnail7.jpg" alt="Usaha 3 Thumbnail" onerror="this.src='https://via.placeholder.com/300x180?text=Usaha+3'">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Usaha 3</div>
@@ -499,7 +505,7 @@
                 <!-- Usaha 4 -->
                 <a href="#" class="option-card" target="_blank">
                     <div class="option-thumbnail">
-                        <img src="thumbnail8.jpg" alt="Usaha 4 Thumbnail">
+                        <img src="thumbnail8.jpg" alt="Usaha 4 Thumbnail" onerror="this.src='https://via.placeholder.com/300x180?text=Usaha+4'">
                     </div>
                     <div class="option-details">
                         <div class="option-title">Usaha 4</div>
