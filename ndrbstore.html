@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Digital Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5f7;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .store-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .store-title {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .store-subtitle {
+            color: #666;
+            font-weight: 400;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light);
+            box-shadow: var(--shadow);
+            margin-right: 30px;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .profile-bio {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .profile-contact {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 15px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .contact-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Products Section */
+        .products-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-thumbnail {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .buy-btn:hover {
+            background: var(--secondary);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-pic {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .profile-contact {
+                justify-content: center;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .store-title {
+                font-size: 2rem;
+            }
+
+            .profile-name {
+                font-size: 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Store Header -->
+        <header class="store-header">
+            <h1 class="store-title">Roblox marketplace</h1>
+            <p class="store-subtitle">Experience for you</p>
+        </header>
+
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+            <div class="profile-info">
+                <h2 class="profile-name">novdev</h2>
+                <p class="profile-bio">Selamat datang di marketplace roblox ku... banyak item experience dan kebutuhan roblox kamu yang bisa kamu temukan di sini😁</p>
+                <div class="profile-contact">
+                    <a href="mailto: novdevmssg72@gmail.com" class="contact-btn">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://wa.me/6285185917217" class="contact-btn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products-section">
+            <h2 class="section-title">List produk</h2>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="product1.jpg" alt="Product 1" class="product-thumbnail">
+                    <img src="page1.jpg" alt="Product 1" class="product-thumbnail">
+                    <div class="product-info">
+                        <h3 class="product-title">Fokus Crypto</h3>
+                        <p class="product-desc">Classic shirt Fokus Crypto meme category.</p>
+                        <div class="product-price">5 ROBUX</div>
+                        <a href="https://www.roblox.com/id/catalog/120691660582176/FOKUS-CRYPTO" class="buy-btn">Beli</a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="product2.jpg" alt="Product 2" class="product-thumbnail">
+                    <div class="product-info">
+                        <h3 class="product-title">Smart Watch</h3>
+                        <p class="product-desc">Fitness tracker with heart rate monitor and notifications.</p>
+                        <div class="product-price">$129.99</div>
+                        <a href="https://example.com/product2" class="buy-btn">Buy Now</a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="product3.jpg" alt="Product 3" class="product-thumbnail">
+                    <div class="product-info">
+                        <h3 class="product-title">Wireless Charger</h3>
+                        <p class="product-desc">Fast charging pad compatible with all Qi-enabled devices.</p>
+                        <div class="product-price">$29.99</div>
+                        <a href="https://example.com/product3" class="buy-btn">Buy Now</a>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="product4.jpg" alt="Product 4" class="product-thumbnail">
+                    <div class="product-info">
+                        <h3 class="product-title">Bluetooth Speaker</h3>
+                        <p class="product-desc">Portable speaker with 20 hours battery life.</p>
+                        <div class="product-price">$59.99</div>
+                        <a href="https://example.com/product4" class="buy-btn">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>&copy; 2023 My Digital Store. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const productCards = document.querySelectorAll('.product-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            productCards.forEach((card, index) => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
