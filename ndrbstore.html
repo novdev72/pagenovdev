@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Digital Store</title>
+    <title>Roblox Marketplace</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
+            --primary: #008CFF;
+            --secondary: #0066CC;
+            --roblox-orange: #FF6B00;
             --dark: #1a1a2e;
             --light: #f8f9fa;
             --success: #4cc9f0;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --card-bg: #FFFFFF;
         }
 
         * {
@@ -25,9 +27,10 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f5f5f7;
+            background-color: #F0F8FF;
             color: #333;
             line-height: 1.6;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
         }
 
         .container {
@@ -40,17 +43,43 @@
         .store-header {
             text-align: center;
             margin-bottom: 30px;
+            position: relative;
         }
 
         .store-title {
             font-size: 2.5rem;
-            color: var(--dark);
+            color: var(--primary);
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .store-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--roblox-orange);
+            border-radius: 2px;
         }
 
         .store-subtitle {
             color: #666;
             font-weight: 400;
+        }
+
+        /* Roblox-themed decoration */
+        .roblox-icon {
+            position: absolute;
+            top: -15px;
+            right: -20px;
+            font-size: 1.5rem;
+            color: var(--roblox-orange);
+            transform: rotate(15deg);
         }
 
         /* Profile Section */
@@ -62,6 +91,19 @@
             padding: 30px;
             box-shadow: var(--shadow);
             margin-bottom: 40px;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: var(--primary);
         }
 
         .profile-pic {
@@ -72,6 +114,7 @@
             border: 5px solid var(--light);
             box-shadow: var(--shadow);
             margin-right: 30px;
+            border: 4px solid var(--primary);
         }
 
         .profile-info {
@@ -80,8 +123,17 @@
 
         .profile-name {
             font-size: 1.8rem;
-            color: var(--dark);
+            color: var(--primary);
             margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-name::after {
+            content: '✓';
+            color: var(--roblox-orange);
+            margin-left: 8px;
+            font-size: 1.2rem;
         }
 
         .profile-bio {
@@ -105,11 +157,13 @@
             text-decoration: none;
             font-size: 0.9rem;
             transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .contact-btn:hover {
             background: var(--secondary);
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
         /* Products Section */
@@ -119,9 +173,23 @@
 
         .section-title {
             font-size: 1.8rem;
-            color: var(--dark);
+            color: var(--primary);
             margin-bottom: 25px;
             text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--roblox-orange);
+            border-radius: 3px;
         }
 
         .products-grid {
@@ -131,22 +199,35 @@
         }
 
         .product-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            border: 1px solid #E0E0E0;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
         }
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 140, 255, 0.2);
         }
 
         .product-thumbnail {
             width: 100%;
             height: 250px;
             object-fit: cover;
+            border-bottom: 2px solid var(--primary);
         }
 
         .product-info {
@@ -171,6 +252,15 @@
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-price::before {
+            content: '🟊';
+            color: var(--roblox-orange);
+            margin-right: 5px;
+            font-size: 1.2rem;
         }
 
         .buy-btn {
@@ -187,10 +277,37 @@
             transition: var(--transition);
             text-align: center;
             text-decoration: none;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
         }
 
         .buy-btn:hover {
             background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .buy-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 50px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+
+        .buy-btn:hover::after {
+            left: 110%;
+        }
+
+        /* Robux Icon */
+        .robux-icon {
+            color: var(--roblox-orange);
+            margin-right: 5px;
         }
 
         /* Footer */
@@ -199,6 +316,10 @@
             padding: 30px 0;
             color: #666;
             font-size: 0.9rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border-top: 3px solid var(--primary);
         }
 
         .social-links {
@@ -219,11 +340,30 @@
             border-radius: 50%;
             text-decoration: none;
             transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .social-link:hover {
             background: var(--secondary);
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .copyright {
+            margin-top: 10px;
+        }
+
+        /* Roblox-themed elements */
+        .roblox-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--roblox-orange);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
         }
 
         /* Responsive Styles */
@@ -266,7 +406,7 @@
     <div class="container">
         <!-- Store Header -->
         <header class="store-header">
-            <h1 class="store-title">Roblox marketplace</h1>
+            <h1 class="store-title">Roblox Marketplace <span class="roblox-icon">◈</span></h1>
             <p class="store-subtitle">Experience for you</p>
         </header>
 
@@ -293,45 +433,49 @@
             <div class="products-grid">
                 <!-- Product 1 -->
                 <div class="product-card">
+                    <div class="roblox-badge">ROBLOX</div>
                     <img src="product1.jpg" alt="Product 1" class="product-thumbnail">
-                        <div class="product-info">
+                    <div class="product-info">
                         <h3 class="product-title">Fokus Crypto</h3>
                         <p class="product-desc">Classic shirt Fokus Crypto meme category.</p>
                         <div class="product-price">5 ROBUX</div>
-                        <a href="https://www.roblox.com/id/catalog/120691660582176/FOKUS-CRYPTO" class="buy-btn">Beli</a>
+                        <a href="https://www.roblox.com/id/catalog/120691660582176/FOKUS-CRYPTO" class="buy-btn"><i class="fas fa-shopping-cart"></i> Beli</a>
                     </div>
                 </div>
 
                 <!-- Product 2 -->
                 <div class="product-card">
+                    <div class="roblox-badge">ROBLOX</div>
                     <img src="product2.jpg" alt="Product 2" class="product-thumbnail">
                     <div class="product-info">
                         <h3 class="product-title">Sweater bulu mata</h3>
                         <p class="product-desc"> Agak sedikit gatal.. dibuat dari apa ini?</p>
                         <div class="product-price">5 ROBUX</div>
-                        <a href="https://www.roblox.com/share?code=452c51b71bfa1a4ab8770af5317bca74&type=AvatarItemDetails" class="buy-btn">Buy Now</a>
+                        <a href="https://www.roblox.com/share?code=452c51b71bfa1a4ab8770af5317bca74&type=AvatarItemDetails" class="buy-btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
                     </div>
                 </div>
 
                 <!-- Product 3 -->
                 <div class="product-card">
+                    <div class="roblox-badge">ROBLOX</div>
                     <img src="product3.jpg" alt="Product 3" class="product-thumbnail">
                     <div class="product-info">
                         <h3 class="product-title">Wireless Charger</h3>
                         <p class="product-desc">Fast charging pad compatible with all Qi-enabled devices.</p>
                         <div class="product-price">$29.99</div>
-                        <a href="https://example.com/product3" class="buy-btn">Buy Now</a>
+                        <a href="https://example.com/product3" class="buy-btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
                     </div>
                 </div>
 
                 <!-- Product 4 -->
                 <div class="product-card">
+                    <div class="roblox-badge">ROBLOX</div>
                     <img src="product4.jpg" alt="Product 4" class="product-thumbnail">
                     <div class="product-info">
                         <h3 class="product-title">Bluetooth Speaker</h3>
                         <p class="product-desc">Portable speaker with 20 hours battery life.</p>
                         <div class="product-price">$59.99</div>
-                        <a href="https://example.com/product4" class="buy-btn">Buy Now</a>
+                        <a href="https://example.com/product4" class="buy-btn"><i class="fas fa-shopping-cart"></i> Buy Now</a>
                     </div>
                 </div>
             </div>
@@ -345,7 +489,7 @@
                 <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
             </div>
-            <p>&copy; 2023 My Digital Store. All rights reserved.</p>
+            <p class="copyright">&copy; 2023 Roblox Marketplace. All rights reserved.</p>
         </footer>
     </div>
 
@@ -368,6 +512,17 @@
                 card.style.transform = 'translateY(20px)';
                 card.style.transition = `all 0.5s ease ${index * 0.1}s`;
                 observer.observe(card);
+            });
+
+            // Add Roblox-themed hover effect to buttons
+            const buttons = document.querySelectorAll('.buy-btn, .contact-btn, .social-link');
+            buttons.forEach(button => {
+                button.addEventListener('mouseover', () => {
+                    button.style.transform = 'scale(1.05)';
+                });
+                button.addEventListener('mouseout', () => {
+                    button.style.transform = '';
+                });
             });
         });
     </script>
