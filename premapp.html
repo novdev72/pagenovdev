@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Aplikasi Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #008CFF;
+            --secondary: #0066CC;
+            --premium: #FF6B00;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F0F8FF;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .store-header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .store-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        .store-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--premium);
+            border-radius: 2px;
+        }
+
+        .store-subtitle {
+            color: #666;
+            font-weight: 400;
+        }
+
+        /* Premium badge */
+        .premium-icon {
+            position: absolute;
+            top: -15px;
+            right: -20px;
+            font-size: 1.5rem;
+            color: var(--premium);
+            transform: rotate(15deg);
+        }
+
+        /* Profile Section */
+        .profile-section {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light);
+            box-shadow: var(--shadow);
+            margin-right: 30px;
+            border: 4px solid var(--primary);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-name::after {
+            content: '✓';
+            color: var(--premium);
+            margin-left: 8px;
+            font-size: 1.2rem;
+        }
+
+        .profile-bio {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .profile-contact {
+            display: flex;
+            gap: 15px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 15px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Premium Notice */
+        .premium-notice {
+            background: rgba(255, 107, 0, 0.1);
+            border-left: 4px solid var(--premium);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Products Section */
+        .products-section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--premium);
+            border-radius: 3px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #E0E0E0;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 140, 255, 0.2);
+        }
+
+        /* Premium product style */
+        .product-card.premium {
+            border: 1px solid var(--premium);
+        }
+
+        .product-card.premium::before {
+            background: var(--premium);
+        }
+
+        .product-thumbnail {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        .product-card.premium .product-thumbnail {
+            border-bottom: 2px solid var(--premium);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .product-card.premium .product-title {
+            color: var(--premium);
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-card.premium .product-price {
+            color: var(--premium);
+        }
+
+        .product-price::before {
+            content: '🟊';
+            color: var(--premium);
+            margin-right: 5px;
+            font-size: 1.2rem;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card.premium .buy-btn {
+            background: var(--premium);
+        }
+
+        .buy-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card.premium .buy-btn:hover {
+            background: #E05E00;
+        }
+
+        .buy-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 50px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+
+        .buy-btn:hover::after {
+            left: 110%;
+        }
+
+        /* Premium Icon */
+        .premium-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--premium);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #666;
+            font-size: 0.9rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            border-top: 3px solid var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--secondary);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .copyright {
+            margin-top: 10px;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #999;
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-pic {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .profile-contact {
+                justify-content: center;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .store-title {
+                font-size: 2rem;
+            }
+
+            .profile-name {
+                font-size: 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Store Header -->
+        <header class="store-header">
+            <h1 class="store-title">Marketplace Premium <span class="premium-icon">◈</span></h1>
+            <p class="store-subtitle">Solusi premium dengan harga terjangkau</p>
+        </header>
+
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <img src="profil.png" alt="Profile Picture" class="profile-pic">
+            <div class="profile-info">
+                <h2 class="profile-name">novdev</h2>
+                <p class="profile-bio">Selamat datang di marketplace premium ku... menyediakan akses terjangkau ke aplikasi premium berkualitas 😊</p>
+                <div class="profile-contact">
+                    <a href="mailto: novdevmssg72@gmail.com" class="contact-btn">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://wa.me/6285185917217" class="contact-btn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Notice -->
+        <div class="premium-notice">
+            <strong>Catatan:</strong> Produk premium disediakan sebagai alternatif ekonomis. Kami mendukung pengembang asli dan menyarankan pembelian resmi jika memungkinkan.
+        </div>
+
+        <!-- Premium Apps Section -->
+        <section class="products-section">
+            <h2 class="section-title">Aplikasi Premium</h2>
+            <div class="products-grid">
+                <!-- Premium App 1 -->
+                <div class="product-card premium">
+                    <div class="premium-badge">PREMIUM</div>
+                    <img src="premium1.jpg" alt="Photo Editor Pro" class="product-thumbnail">
+                    <div class="product-info">
+                        <h3 class="product-title">Photo Editor Pro</h3>
+                        <p class="product-desc">Versi premium dengan semua fitur terbuka. Akses seumur hidup.</p>
+                        <div class="product-price">Rp 25.000</div>
+                        <a href="#" class="buy-btn"><i class="fas fa-crown"></i> Dapatkan</a>
+                    </div>
+                </div>
+
+                <!-- Premium App 2 -->
+                <div class="product-card premium">
+                    <div class="premium-badge">PREMIUM</div>
+                    <img src="premium2.jpg" alt="VPN Unlimited" class="product-thumbnail">
+                    <div class="product-info">
+                        <h3 class="product-title">VPN Unlimited</h3>
+                        <p class="product-desc">Akses semua server premium tanpa batas. Update berkala.</p>
+                        <div class="product-price">Rp 35.000</div>
+                        <a href="#" class="buy-btn"><i class="fas fa-crown"></i> Dapatkan</a>
+                    </div>
+                </div>
+
+                <!-- Premium App 3 -->
+                <div class="product-card premium">
+                    <div class="premium-badge">PREMIUM</div>
+                    <img src="premium3.jpg" alt="Music Streaming" class="product-thumbnail">
+                    <div class="product-info">
+                        <h3 class="product-title">Music Streaming</h3>
+                        <p class="product-desc">Nikmati musik tanpa iklan dan download offline.</p>
+                        <div class="product-price">Rp 30.000</div>
+                        <a href="#" class="buy-btn"><i class="fas fa-crown"></i> Dapatkan</a>
+                    </div>
+                </div>
+
+                <!-- Premium App 4 -->
+                <div class="product-card premium">
+                    <div class="premium-badge">PREMIUM</div>
+                    <img src="premium4.jpg" alt="PDF Expert" class="product-thumbnail">
+                    <div class="product-info">
+                        <h3 class="product-title">PDF Expert</h3>
+                        <p class="product-desc">Edit, convert, dan tanda tangan PDF dengan mudah.</p>
+                        <div class="product-price">Rp 40.000</div>
+                        <a href="#" class="buy-btn"><i class="fas fa-crown"></i> Dapatkan</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p class="copyright">&copy; 2023 Marketplace Premium. All rights reserved.</p>
+            <div class="disclaimer">
+                Produk digital yang dijual merupakan alternatif ekonomis. Kami mendukung pembelian resmi jika memungkinkan.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const productCards = document.querySelectorAll('.product-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            productCards.forEach((card, index) => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            // Add hover effect to buttons
+            const buttons = document.querySelectorAll('.buy-btn, .contact-btn, .social-link');
+            buttons.forEach(button => {
+                button.addEventListener('mouseover', () => {
+                    button.style.transform = 'scale(1.05)';
+                });
+                button.addEventListener('mouseout', () => {
+                    button.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
